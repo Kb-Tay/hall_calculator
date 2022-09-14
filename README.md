@@ -1,2 +1,2 @@
-# eusoff_pointCalc
+# eusoff_point_calculator
 point calculator
