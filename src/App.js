@@ -13,6 +13,10 @@ function App() {
   //how to store points as int from start so do not need to parseInt in score component 
   const [newItem, setNewItem] = useState({item: "", points: ''});
 
+  //state to control the CCA category
+  const [cat, setCat] = useState('');
+
+
   useEffect(() => {
     localStorage.setItem('ccalist', JSON.stringify(items));
   }, [items])
@@ -41,11 +45,15 @@ function App() {
   return (
     <div>
       <Header title = "Points Calculator"/>
-      <SearchBar />  
+      <SearchBar 
+        cat = {cat} 
+        setCat = {setCat}/>
+
       <CcaForm
         newItem = {newItem}
         setNewItem = {setNewItem} 
-        handleSubmit={handleSubmit}/> 
+        handleSubmit={handleSubmit}
+        cat = {cat}/> 
       <Score items = {items}/>
       <Content 
         items = {items}

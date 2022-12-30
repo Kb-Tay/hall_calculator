@@ -4,30 +4,32 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  Button,
+  Button
 } from '@chakra-ui/react'
+import { ChevronDownIcon } from '@chakra-ui/icons'
 
-const SearchBar = () => {
+const SearchBar = ({cat, setCat}) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
   };
 
+
   return (
     <Menu>
-      <MenuButton as={Button}>
-        Actions
-      </MenuButton>
-    <MenuList>
-      <MenuItem>Download</MenuItem>
-      <MenuItem>Create a Copy</MenuItem>
-    </MenuList>
-  </Menu>
+      {({ isOpen }) => (
+        <>
+          <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
+            {isOpen ? 'Close' : 'Select CCA'}
+          </MenuButton>
+          <MenuList>
+            <MenuItem value={'dp'} onClick={e => setCat(e.target.value)}>Dance Production</MenuItem>
+            <MenuItem value={'sport'} onClick={e => setCat(e.target.value)}>Sports</MenuItem>
+          </MenuList>
+        </>
+      )}
+    </Menu>
   );
 };
 

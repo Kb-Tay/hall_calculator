@@ -1,7 +1,7 @@
 import { FaPlus } from 'react-icons/fa';
 import { useRef } from 'react';
 
-const CcaForm = ({ newItem, setNewItem, handleSubmit }) => {
+const CcaForm = ({ newItem, setNewItem, handleSubmit, cat }) => {
     const inputRef = useRef();
 
     const handleChange = (event) => {
