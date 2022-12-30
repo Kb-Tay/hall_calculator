@@ -3,8 +3,12 @@ import Content from './Content';
 import CcaForm from './CcaForm';
 import Score from './Score';
 import SearchBar from './SearchBar';
+import DPForm from './Forms/DPForm';
 import { ChakraProvider } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
+
+
 
 
 function App() {
@@ -15,7 +19,6 @@ function App() {
 
   //state to control the CCA category
   const [cat, setCat] = useState('');
-
 
   useEffect(() => {
     localStorage.setItem('ccalist', JSON.stringify(items));
@@ -42,24 +45,37 @@ function App() {
     setNewItem('');
   }
 
+  //updates item state 
+  const handleChange = (event) => {
+    setNewItem({...newItem, [event.target.name]: event.target.value });
+  };
+
   return (
-    <div>
+    <ChakraProvider>
+      <Container maxW={1000}>
       <Header title = "Points Calculator"/>
       <SearchBar 
-        cat = {cat} 
-        setCat = {setCat}/>
-
+        cat = {cat}
+        setCat = {setCat} />
+      <Container>
+        { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange}/> 
+                      : <p>Select Category</p>} 
+      </Container>
       <CcaForm
         newItem = {newItem}
         setNewItem = {setNewItem} 
         handleSubmit={handleSubmit}
+        handleChange={handleChange}
         cat = {cat}/> 
       <Score items = {items}/>
       <Content 
         items = {items}
+        setCat = {setCat}
         handleDelete = {handleDelete}
       /> 
-    </div>
+    </Container>
+    </ChakraProvider>
+    
   );
 }
 

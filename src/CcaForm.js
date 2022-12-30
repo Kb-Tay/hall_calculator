@@ -1,7 +1,7 @@
 import { FaPlus } from 'react-icons/fa';
 import { useRef } from 'react';
 
-const CcaForm = ({ newItem, setNewItem, handleSubmit, cat }) => {
+const CcaForm = ({ newItem, setNewItem, handleSubmit }) => {
     const inputRef = useRef();
 
     const handleChange = (event) => {
@@ -13,6 +13,7 @@ const CcaForm = ({ newItem, setNewItem, handleSubmit, cat }) => {
     return (
         <form className='addForm' onSubmit={handleSubmit}>
             <label htmlFor='addItem'>Add Item</label>
+            <p>//This component is just to test how the data will be displayed</p>
             <input
                 autoFocus
                 ref={inputRef}

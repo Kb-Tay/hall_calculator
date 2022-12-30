@@ -142,7 +142,7 @@ ul li::before {
   outline: none;
 }
 
-button {
+/* button {
   height: 48px;
   min-width: 48px;
   border-radius: 0.25rem;
@@ -151,14 +151,14 @@ button {
   background-color: aliceblue;
   color: mediumblue;
   cursor: pointer;
-}
+} */
 
-button:focus, 
-button:hover {
+/* button:focus,  */
+/* button:hover {
   color: white;
   background-color: limegreen;
   outline: none;
-}
+} */
 
 .searchForm {
   width: 100%;
