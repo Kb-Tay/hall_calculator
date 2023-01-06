@@ -11,63 +11,85 @@ import {
   HStack,
   Button
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { eventWrapper } from '@testing-library/user-event/dist/utils'
+import { useState, useEffect } from 'react'
 
-const DPForm = ({newItem, setNewItem, handleSubmit, handleChange}) => {
+const DPForm = ({newItem, setNewItem, handleSubmit, addItem}) => {
+
   const data = [
-    {item: 'Logistics', points:'10'}
-
+    {item: 'Logistics', points: 10, extrapoints: 15},
+    {item: 'Publicity' , points: 10, extrapoints: 16 },
+    {item: 'Marketing', points: 10, extrapoints: 5},
+    {item: 'Fundraising', points: 10, extrapoints: 5},
+    {item: 'Sets', points: 12, extrapoints: 5},
+    {item: 'Lights', points: 8, extrapoints: 4},
+    {item: 'Sounds', points: 6, extrapoints: 6},
   ]
 
-  const [CCA, setCCA] = useState([
-    {item: '', points: ''}
-  ])
+  const [name, setName] = useState('')
+  const [point, setPoint] = useState(0)
+  const [leader, setLeader] = useState(false)
 
-  console.log(CCA)
+  useEffect(() => {
+    if(name !== '') {
+      const val = assignPoints(name)
+      setPoint(val)
+    } 
+  }, [leader])
+
+  useEffect(() => {
+    setNewItem({item: name, points: point})
+  }, [name, point])
+
+  console.log(leader)
+  console.log(newItem)
 
   const assignPoints = (value) => {
-    for (let i = 0; i <= data.length; i++ ) {
-      if(data[i].item == value) {
-        setCCA({item: value, points: data[i].points})
-        console.log(CCA)
-        setCCA({item: '', points: ''})
+    for (let i = 0; i < data.length; i++ ) {
+      if(data[i].item === value && !leader) {
+        console.log('hi')
+        return data[i].points
+      } 
+      if (data[i].item === value && leader) {
+        console.log('bye')
+        return data[i].extrapoints
       }
     }
   }
 
+  const handleSelect = (event) => {
+    const obj = event.target.value
+    const obj_point = assignPoints(obj)
+    setName(obj)
+    setPoint(obj_point)
+  } 
+
+  const onClickHandler = (event) => {
+    setLeader(event.target.value)
+  }
+
+  const handlenewSubmit = (e) => {
+    e.preventDefault()
+    addItem(newItem)
+  }
+
   return (
+    <form onSubmit={handlenewSubmit}>
     <FormControl>
-      <FormLabel onSubmit={assignPoints}>Dance Production</FormLabel>
+      <FormLabel>Dance Production</FormLabel>
       <HStack>
-        <Select placeholder='Select role'>
-            <option value='Producers' onChange={e => e.target.value}>Producers</option>
-            <option>Secretary/Treasurer</option>
-            <option>Scriptwriter</option>
-            <option>Production Manager</option>
-            <option>Assistant Production Manager</option>
-            <option>Dance/Drama Director</option>
-            <option>Junior Dance/Drama Director</option>
-            <option>Dance Coordinators</option>
-            <option>Stage Manager</option>
-            <option>Assistant Stage Manager</option>
-            <option>Choreographers/Dancers</option>
-            <option>Dance ICs</option>
-            <option>Cast</option>
-            <option value='Logistics' onChange={e => e.target.value}>Logistics</option>
-            <option>Publicity</option>
-            <option>Marketing</option>
-            <option>Fundraising</option>
-            <option>Sets</option>
-            <option>Lights</option>
-            <option>Sounds</option>
+        <Select placeholder='Select role' onChange={handleSelect}>
+        {
+          data.map(item => 
+            <option key={item.item} value={item.item}>{item.item}</option>              
+          )
+        }
         </Select>
-        <FormLabel>Select:</FormLabel>
-        <RadioGroup defaultValue='Member'>
-          <Stack direction='row'>
-            <Radio value='Member'>Member</Radio>
-            <Radio value='HEad'>Head</Radio>
-          </Stack>
-        </RadioGroup>
+        <FormLabel>Role:</FormLabel>
+        <Select onChange={onClickHandler}>
+          <option value={false} default>Member</option>
+          <option value={true} >Head</option>
+        </Select>
         <Button
             colorScheme='teal'
             type='submit'
@@ -76,6 +98,7 @@ const DPForm = ({newItem, setNewItem, handleSubmit, handleChange}) => {
           </Button>
       </HStack>
     </FormControl>
+    </form>
   )
 }
 

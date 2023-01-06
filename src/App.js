@@ -58,7 +58,7 @@ function App() {
         cat = {cat}
         setCat = {setCat} />
       <Container>
-        { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange}/> 
+        { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> 
                       : <p>Select Category</p>} 
       </Container>
       <CcaForm
