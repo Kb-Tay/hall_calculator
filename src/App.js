@@ -7,6 +7,7 @@ import DPForm from './Forms/DPForm';
 import { ChakraProvider } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
+import SocialForm from './Forms/SocialForm';
 
 
 
@@ -59,14 +60,17 @@ function App() {
         setCat = {setCat} />
       <Container>
         { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> 
+                      : cat == 'ss'
+                      ? <SocialForm />
                       : <p>Select Category</p>} 
+
       </Container>
-      <CcaForm
+      {/* <CcaForm
         newItem = {newItem}
         setNewItem = {setNewItem} 
         handleSubmit={handleSubmit}
         handleChange={handleChange}
-        cat = {cat}/> 
+        cat = {cat}/>  */}
       <Score items = {items}/>
       <Content 
         items = {items}

@@ -11,19 +11,18 @@ import {
   HStack,
   Button
 } from '@chakra-ui/react'
-import { eventWrapper } from '@testing-library/user-event/dist/utils'
 import { useState, useEffect } from 'react'
 
-const DPForm = ({newItem, setNewItem, handleSubmit, addItem}) => {
+const DPForm = ({newItem, setNewItem, addItem}) => {
 
   const data = [
     {item: 'Logistics', points: 10, extrapoints: 15},
     {item: 'Publicity' , points: 10, extrapoints: 16 },
-    {item: 'Marketing', points: 10, extrapoints: 5},
-    {item: 'Fundraising', points: 10, extrapoints: 5},
-    {item: 'Sets', points: 12, extrapoints: 5},
-    {item: 'Lights', points: 8, extrapoints: 4},
-    {item: 'Sounds', points: 6, extrapoints: 6},
+    {item: 'Marketing', points: 10, extrapoints: 15},
+    {item: 'Fundraising', points: 10, extrapoints: 15},
+    {item: 'Sets', points: 12, extrapoints: 17},
+    {item: 'Lights', points: 8, extrapoints: 12},
+    {item: 'Sounds', points: 6, extrapoints: 12},
   ]
 
   const [name, setName] = useState('')
@@ -38,11 +37,9 @@ const DPForm = ({newItem, setNewItem, handleSubmit, addItem}) => {
   }, [leader])
 
   useEffect(() => {
-    setNewItem({item: name, points: point})
+    const label = leader ? " head" : " member"
+    setNewItem({item: "DP: " + name + label, points: point})
   }, [name, point])
-
-  console.log(leader)
-  console.log(newItem)
 
   const assignPoints = (value) => {
     for (let i = 0; i < data.length; i++ ) {
@@ -68,9 +65,18 @@ const DPForm = ({newItem, setNewItem, handleSubmit, addItem}) => {
     setLeader(event.target.value)
   }
 
+  //need to add some error handling to the form
   const handlenewSubmit = (e) => {
     e.preventDefault()
     addItem(newItem)
+  }
+
+  const handleLeader = (e) => {
+    if (e.target.value == 'false') {
+      setLeader(false)
+    } else {
+      setLeader(true)
+    }
   }
 
   return (
@@ -86,9 +92,9 @@ const DPForm = ({newItem, setNewItem, handleSubmit, addItem}) => {
         }
         </Select>
         <FormLabel>Role:</FormLabel>
-        <Select onChange={onClickHandler}>
+        <Select onChange={handleLeader}>
           <option value={false} default>Member</option>
-          <option value={true} >Head</option>
+          <option value={true}>Head</option>
         </Select>
         <Button
             colorScheme='teal'
