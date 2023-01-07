@@ -26,7 +26,7 @@ const SearchBar = ({cat, setCat}) => {
           <MenuList>
             <MenuItem value={'dp'} onClick={e => setCat(e.target.value)}>Dance Production</MenuItem>
             <MenuItem value={'sport'} onClick={e => setCat(e.target.value)}>Sports</MenuItem>
-            <MenuItem value={'ss'} onClick={e => setCat(e.target.value)}>Social Services</MenuItem>
+            <MenuItem value={'ss'} onClick={e => setCat(e.target.value)}>Social Service / Other Comms</MenuItem>
           </MenuList>
         </>
       )}

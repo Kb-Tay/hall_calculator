@@ -61,7 +61,7 @@ function App() {
       <Container>
         { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> 
                       : cat == 'ss'
-                      ? <SocialForm />
+                      ? <SocialForm newItem = {newItem} setNewItem = {setNewItem} addItem={addItem}/>
                       : <p>Select Category</p>} 
 
       </Container>
