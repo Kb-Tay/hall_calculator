@@ -25,8 +25,9 @@ const DPForm = ({newItem, setNewItem, addItem}) => {
     {item: 'Sounds', points: 6, extrapoints: 12},
   ]
 
-  const [name, setName] = useState('')
-  const [point, setPoint] = useState(0)
+  //find better way to solve this 
+  const [name, setName] = useState('Logistics')
+  const [point, setPoint] = useState(10)
   const [leader, setLeader] = useState(false)
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const DPForm = ({newItem, setNewItem, addItem}) => {
   }, [leader])
 
   useEffect(() => {
-    const label = leader ? " head" : " member"
+    const label = leader ? " Head" : " Member"
     setNewItem({item: "DP: " + name + label, points: point})
   }, [name, point])
 
@@ -82,9 +83,9 @@ const DPForm = ({newItem, setNewItem, addItem}) => {
   return (
     <form onSubmit={handlenewSubmit}>
     <FormControl>
-      <FormLabel>Dance Production</FormLabel>
+      <FormLabel><u>Dance Production</u></FormLabel>
       <HStack>
-        <Select placeholder='Select role' onChange={handleSelect}>
+        <Select onChange={handleSelect}>
         {
           data.map(item => 
             <option key={item.item} value={item.item}>{item.item}</option>              

@@ -1,22 +1,16 @@
 import { useState, useEffect } from 'react'
 import {
-  ChakraProvider,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Select,
-  Radio,
-  RadioGroup,
-  Stack,
   HStack,
   Button
 } from '@chakra-ui/react'
 
 const SocialForm = ({newItem, setNewItem, addItem}) => {
-  const [role, setRole] = useState('member');
-  const [name, setName] = useState('');
-  const [point, setPoint] = useState(0);
+  const [role, setRole] = useState('Member');
+  const [name, setName] = useState('Eusoff Expeditions');
+  const [point, setPoint] = useState(.7 * 12);
 
   useEffect(() => {
     if(name !== '') {
@@ -52,11 +46,11 @@ const SocialForm = ({newItem, setNewItem, addItem}) => {
 
   const roles = [
     {id: 1,
-     name: 'member'},
+     name: 'Member'},
     {id: 2, 
-     name: 'exco'},
+     name: 'Exco'},
     {id: 3,
-     name: 'head'},
+     name: 'Head'},
   ]
 
   const assignPoints = (value) => {
@@ -83,9 +77,9 @@ const SocialForm = ({newItem, setNewItem, addItem}) => {
   return (
     <form onSubmit={handlenewSubmit}>
     <FormControl>
-      <FormLabel>Social Services & Other Comms</FormLabel>
+      <FormLabel><u>Social Services & Other Comms</u></FormLabel>
       <HStack>
-        <Select placeholder='Select Community' onChange={handleChange}>
+        <Select onChange={handleChange}>
         {
           data.map(item => 
             <option key={item.item} value={item.item}>{item.item}</option>              
