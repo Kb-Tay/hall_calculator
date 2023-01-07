@@ -8,6 +8,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import SocialForm from './Forms/SocialForm';
+import SportsForm from './Forms/SportsForm';
+import Footer from './Footer';
 
 
 
@@ -60,9 +62,9 @@ function App() {
         setCat = {setCat} />
       <Container>
         { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> 
-                      : cat == 'ss'
-                      ? <SocialForm />
-                      : <p>Select Category</p>} 
+                      : cat == 'ss' ?
+                      <SocialForm />
+                      : <SportsForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> } 
 
       </Container>
       {/* <CcaForm
@@ -78,8 +80,10 @@ function App() {
         handleDelete = {handleDelete}
       /> 
       <Score items = {items}/>
+      <Footer/>
     </Container>
     </ChakraProvider>
+    
     
   );
 }
