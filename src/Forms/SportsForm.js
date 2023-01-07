@@ -39,43 +39,56 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
 
   const [name, setName] = useState('')
   const [point, setPoint] = useState(0)
-  const [leader, setLeader] = useState(false)
+  const[title, setTitle] = useState(null)
 
-  useEffect(() => {
-    if(name !== '') {
-      const val = assignPoints(name)
-      setPoint(val)
-    } 
-  }, [leader])
-
-  useEffect(() => {
-    const label = leader ? " head" : " member"
-    setNewItem({item: "DP: " + name + label, points: point})
-  }, [name, point])
-
-  const assignPoints = (value) => {
-    for (let i = 0; i < data.length; i++ ) {
-      if(data[i].item === value && !leader) {
-        console.log('hi')
-        return data[i].points
-      } 
-      if (data[i].item === value && leader) {
-        console.log('bye')
-        return data[i].extrapoints
-      }
-    }
-  }
-
-  const handleSelect = (event) => {
-    const obj = event.target.value
-    const obj_point = assignPoints(obj)
-    setName(obj)
-    setPoint(obj_point)
+  const handleSports = (event) => {
+    setPoint(7)
+    setName(event.target.value)
+    setTitle('Member')
   } 
 
-  const onClickHandler = (event) => {
-    setLeader(event.target.value)
+  const addPoints = (points,point) => {
+    const newPoints = point + points
+    setPoint(newPoints)
   }
+
+  const handleRole = (e) => {
+    if (e.target.value == 'Captain') {
+      addPoints(5)
+      setTitle('Captain')
+      console.log('testing')
+      
+    }
+    
+    else if (e.target.value == 'Vice-Captain') {
+      addPoints(3)
+      setTitle('Vice-Captain')
+    }
+
+    else if (e.target.value == 'Team manager') {
+      addPoints(3)
+      setTitle('Team Manager')
+    }
+
+    else {addPoints(0)}
+  }  
+
+  const handleFinalCut = (e) => {
+    if (e.target.value == 'Yes') 
+    {
+    addPoints(1)
+    
+  }
+  
+  else {
+    addPoints(0)
+  }}
+
+
+  useEffect(() => {
+    setNewItem({item: name + ' ' + title , points: point})
+  }, [name])
+
 
   //need to add some error handling to the form
   const handlenewSubmit = (e) => {
@@ -83,20 +96,14 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
     addItem(newItem)
   }
 
-  const handleLeader = (e) => {
-    if (e.target.value == 'false') {
-      setLeader(false)
-    } else {
-      setLeader(true)
-    }
-  }
+
 
   return (
     <form onSubmit={handlenewSubmit}>
     <FormControl>
       <FormLabel>You've Selected: Sports</FormLabel>
       <HStack>
-        <Select placeholder='Select Sport' onChange={handleSelect}>
+        <Select placeholder='Select Sport' onChange={handleSports}>
         {
           data.map(item => 
             <option key={item.item} value={item.item}>{item.item}</option>              
@@ -104,16 +111,16 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
         }
         </Select>
         
-        <Select placeholder='Role' onChange={handleLeader}>
-          <option value={false} >Member</option>
-          <option value={true}> Captain </option>
-          <option value={true}> Vice-Captain </option>
-          <option value={true}>Team manager</option>
+        <Select placeholder='Role' onChange={handleRole}>
+          <option>Member</option>
+          <option> Captain </option>
+          <option> Vice-Captain </option>
+          <option>Team manager</option>
         </Select>
 
-        <Select placeholder= 'Made Final Cut?' onChange={handleLeader}>
-          <option value={false}>Yes</option>
-          <option value={true}> No </option>
+        <Select placeholder= 'Made Final Cut?' onChange={handleFinalCut}>
+          <option value={true}>Yes</option>
+          <option value={false}> No </option>
           
         </Select>
         
