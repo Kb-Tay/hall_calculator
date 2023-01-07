@@ -4,7 +4,13 @@ import CcaForm from './CcaForm';
 import Score from './Score';
 import SearchBar from './SearchBar';
 import DPForm from './Forms/DPForm';
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, CloseButton } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react';
 import { Container } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import SocialForm from './Forms/SocialForm';
@@ -23,6 +29,9 @@ function App() {
   //state to control the CCA category
   const [cat, setCat] = useState('');
 
+  //state to control the alert component
+  const [display, setDisplay] = useState('none');
+
   useEffect(() => {
     localStorage.setItem('ccalist', JSON.stringify(items));
   }, [items])
@@ -32,8 +41,15 @@ function App() {
     const name = item.item;
     const points = item.points
     const myNewItem = { id, name, points };
-    const listItems = [...items, myNewItem];
-    setItems(listItems);
+
+    //check for duplicate
+    const check = items.reduce((acc, curr) => curr.name === name || acc, false )
+    if(check) {
+      setDisplay('')
+    } else {
+      const listItems = [...items, myNewItem];
+      setItems(listItems);
+    }
   }
 
   const handleDelete = (id) => {
@@ -60,13 +76,20 @@ function App() {
       <SearchBar 
         cat = {cat}
         setCat = {setCat} />
-      <Container>
+      <Container mb={2}>
         { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> 
-                      : cat == 'ss' ?
-                      <SocialForm />
-                      : <SportsForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> } 
+                      : cat == 'ss'
+                      ? <SocialForm newItem = {newItem} setNewItem = {setNewItem} addItem={addItem}/>
+                      : cat == 'sports'
+                      ? <SportsForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> } 
+                      : <p>Select Category</p>} 
 
       </Container>
+      <Alert status="warning" variant='top-accent' display={display}>
+          <AlertIcon />
+          <AlertTitle mr={3}>Entered the same CCA twice</AlertTitle>
+          <CloseButton position='absolute' right='8px' top='8px' onClick={() => setDisplay('none')}/>
+      </Alert>
       {/* <CcaForm
         newItem = {newItem}
         setNewItem = {setNewItem} 

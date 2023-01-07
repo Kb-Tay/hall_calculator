@@ -1,11 +1,10 @@
 const Score = ({items}) => {
-  const total = items.reduce((acc, curr) => acc + parseInt(curr.points), 0);
-  
+  const total = items.reduce((acc, curr) => acc + parseFloat(curr.points), 0);
+  const round = Math.round(total)
   return (
     <ul>
-      <p className="solid">Total Points: {total}</p>
+      <p className="solid">Your Points: {round}</p>
     </ul>
-    
   )
 }
 
