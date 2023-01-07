@@ -5,7 +5,6 @@ const Score = ({items}) => {
     <ul>
       <p className="solid">Your Points: {round}</p>
     </ul>
-    
   )
 }
 

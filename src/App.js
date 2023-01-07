@@ -14,6 +14,8 @@ import {
 import { Container } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import SocialForm from './Forms/SocialForm';
+import SportsForm from './Forms/SportsForm';
+import Footer from './Footer';
 
 
 
@@ -70,7 +72,7 @@ function App() {
   return (
     <ChakraProvider>
       <Container maxW={1000}>
-      <Header title = "Points Calculator"/>
+      <Header title = "Eusoff Points Calculator"/>
       <SearchBar 
         cat = {cat}
         setCat = {setCat} />
@@ -78,6 +80,8 @@ function App() {
         { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> 
                       : cat == 'ss'
                       ? <SocialForm newItem = {newItem} setNewItem = {setNewItem} addItem={addItem}/>
+                      : cat == 'sports'
+                      ? <SportsForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> } 
                       : <p>Select Category</p>} 
 
       </Container>
@@ -92,14 +96,17 @@ function App() {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         cat = {cat}/>  */}
-      <Score items = {items}/>
+      <p>---------------------------------------------------------------------------------------------------</p>
       <Content 
         items = {items}
         setCat = {setCat}
         handleDelete = {handleDelete}
       /> 
+      <Score items = {items}/>
+      <Footer/>
     </Container>
     </ChakraProvider>
+    
     
   );
 }
