@@ -81,7 +81,7 @@ function App() {
                       : cat == 'ss'
                       ? <SocialForm newItem = {newItem} setNewItem = {setNewItem} addItem={addItem}/>
                       : cat == 'sports'
-                      ? <SportsForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> } 
+                      ? <SportsForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/>
                       : <p>Select Category</p>} 
 
       </Container>
