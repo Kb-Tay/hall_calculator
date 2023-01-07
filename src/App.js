@@ -54,7 +54,7 @@ function App() {
   return (
     <ChakraProvider>
       <Container maxW={1000}>
-      <Header title = "Points Calculator"/>
+      <Header title = "Eusoff Points Calculator"/>
       <SearchBar 
         cat = {cat}
         setCat = {setCat} />
@@ -71,12 +71,13 @@ function App() {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         cat = {cat}/>  */}
-      <Score items = {items}/>
+      <p>---------------------------------------------------------------------------------------------------</p>
       <Content 
         items = {items}
         setCat = {setCat}
         handleDelete = {handleDelete}
       /> 
+      <Score items = {items}/>
     </Container>
     </ChakraProvider>
     

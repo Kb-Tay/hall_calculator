@@ -3,7 +3,7 @@ const Score = ({items}) => {
   
   return (
     <ul>
-      <p className="solid">Your Points: {total}</p>
+      <p className="solid">Total Points: {total}</p>
     </ul>
     
   )
