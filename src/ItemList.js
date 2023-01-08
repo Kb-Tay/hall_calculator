@@ -1,22 +1,35 @@
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa'
+import {
+  Card,
+  Flex,
+  Spacer,
+  Stack,
+  Text,
+  IconButton,
+  CardHeader,
+  Heading,
+  CardBody,
+  StackDivider,
+} from '@chakra-ui/react'
 
 const ItemList = ({ items, handleCheck, handleDelete }) => {
-
   return (
-      <ul>
+    <Card>
+      <CardHeader>
+        <Heading size="md">Your CCAs</Heading>
+      </CardHeader>
+      <CardBody>
+        <Stack divider={<StackDivider />}>
           {items.map((item) => (
-              <li className="item" key="{item.id}">
-              <label>{item.name}</label>
-              <label type="number">{item.points}</label>  
-              <FaTrashAlt
-                  onClick={() => handleDelete(item.id)}
-                  role="button"
-                  tabIndex="0"
-                  aria-label={`Delete ${item.item}`}
-              />
-          </li>
+            <Flex w="100%" p={2} align="center" justify="space-between" key={item.id}>
+              <Text>{item.name}</Text>
+              <Spacer />
+              <IconButton icon={<FaTrashAlt />} onClick={() => handleDelete(item.id)} />
+            </Flex>
           ))}
-      </ul>
+        </Stack>
+      </CardBody>
+    </Card>
   )
 }
 
