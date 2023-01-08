@@ -1,10 +1,13 @@
-const Score = ({items}) => {
-  const total = items.reduce((acc, curr) => acc + parseFloat(curr.points), 0);
+import { Heading } from '@chakra-ui/react'
+import React from 'react'
+
+const Score = ({ items }) => {
+  const total = items.reduce((acc, curr) => acc + parseFloat(curr.points), 0)
   const round = Math.round(total)
   return (
-    <ul>
-      <p className="solid">Your Points: {round}</p>
-    </ul>
+    <Heading size="md" p={2}>
+      Your points: {round}
+    </Heading>
   )
 }
 
