@@ -38,65 +38,58 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
   ]
 
   const [name, setName] = useState('')
-  const [point, setPoint] = useState(0)
+  const [point, setPoint] = useState(7)
   const[title, setTitle] = useState(null)
 
+  const addPoints = (points, point) => {
+    const newPoint = points + point
+    setPoint(newPoint)
+  }
+
   const handleSports = (event) => {
-    setPoint(7)
     setName(event.target.value)
     setTitle('Member')
   } 
 
-  const addPoints = (points,point) => {
-    const newPoints = point + points
-    setPoint(newPoints)
-  }
 
   const handleRole = (e) => {
     if (e.target.value == 'Captain') {
-      addPoints(5)
-      setTitle('Captain')
-      console.log('testing')
-      
+      setPoint(12)
+      setTitle('Captain')      
     }
     
     else if (e.target.value == 'Vice-Captain') {
-      addPoints(3)
       setTitle('Vice-Captain')
+      setPoint(10)
     }
 
     else if (e.target.value == 'Team manager') {
-      addPoints(3)
+      setPoint(10)
       setTitle('Team Manager')
     }
 
-    else {addPoints(0)}
+    else {setPoint(7)}
   }  
+
+
+  useEffect(() => {
+    setNewItem({item: name + ` (${title})` , points: point})
+  }, [name, point])
 
   const handleFinalCut = (e) => {
     if (e.target.value == 'Yes') 
     {
-    addPoints(1)
+      const newPoint = point + 1
+      setPoint(newPoint)
     
   }
-  
-  else {
-    addPoints(0)
-  }}
-
-
-  useEffect(() => {
-    setNewItem({item: name + ' ' + title , points: point})
-  }, [name])
-
+}
 
   //need to add some error handling to the form
   const handlenewSubmit = (e) => {
     e.preventDefault()
     addItem(newItem)
   }
-
-
 
   return (
     <form onSubmit={handlenewSubmit}>
@@ -119,8 +112,8 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
         </Select>
 
         <Select placeholder= 'Made Final Cut?' onChange={handleFinalCut}>
-          <option value={true}>Yes</option>
-          <option value={false}> No </option>
+        <option>Yes</option>
+        <option> No </option>
           
         </Select>
         

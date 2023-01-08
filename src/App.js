@@ -71,7 +71,7 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Container maxW={1000}>
+      <Container maxW={1000} >
       <Header title = "Eusoff Points Calculator"/>
       <SearchBar 
         cat = {cat}
@@ -80,7 +80,7 @@ function App() {
         { cat == 'dp' ? <DPForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/> 
                       : cat == 'ss'
                       ? <SocialForm newItem = {newItem} setNewItem = {setNewItem} addItem={addItem}/>
-                      : cat == 'sports'
+                      : cat == 'sport'
                       ? <SportsForm newItem = {newItem} setNewItem = {setNewItem} handleSubmit={handleSubmit} handleChange={handleChange} addItem={addItem}/>
                       : <p>Select Category</p>} 
       </Container>
