@@ -1,14 +1,18 @@
-const Header = ({ title }) => {
+import React from 'react'
+import { Flex, Heading } from '@chakra-ui/react'
 
+const Header = ({ title }) => {
   return (
-      <header>
-          <h1>{title}</h1>
-      </header>
+    <Flex w="100%" px={6} py={5} align="center">
+      <Heading size="xl" mx="auto">
+        {title}
+      </Heading>
+    </Flex>
   )
 }
 
 Header.defaultProps = {
-  title: "Default Title"
+  title: 'Default Title',
 }
 
-export default Header;
+export default Header
