@@ -37,9 +37,9 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
     {item: 'Volleyball', points: 6, extrapoints: 12},
   ]
 
-  const [name, setName] = useState('')
+  const [name, setName] = useState('Badminton')
   const [point, setPoint] = useState(7)
-  const[title, setTitle] = useState(null)
+  const[title, setTitle] = useState('Member')
 
   const addPoints = (points, point) => {
     const newPoint = points + point
@@ -96,7 +96,7 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
     <FormControl>
       <FormLabel>You've Selected: Sports</FormLabel>
       <HStack>
-        <Select placeholder='Select Sport' onChange={handleSports}>
+        <Select onChange={handleSports}>
         {
           data.map(item => 
             <option key={item.item} value={item.item}>{item.item}</option>              
@@ -104,17 +104,18 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
         }
         </Select>
         
-        <Select placeholder='Role' onChange={handleRole}>
+        <FormLabel>Select Role:</FormLabel>
+        <Select onChange={handleRole}>
           <option>Member</option>
           <option> Captain </option>
           <option> Vice-Captain </option>
           <option>Team manager</option>
         </Select>
 
-        <Select placeholder= 'Made Final Cut?' onChange={handleFinalCut}>
+        <FormLabel>Made IHG cut:</FormLabel>
+        <Select onChange={handleFinalCut}>
         <option>Yes</option>
         <option> No </option>
-          
         </Select>
         
         <Button
