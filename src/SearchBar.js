@@ -18,6 +18,9 @@ const SearchBar = ({ cat, setCat }) => {
               {isOpen ? 'Close' : 'Select CCA'}
             </MenuButton>
             <MenuList>
+              <MenuItem value={'cultural'} onClick={(e) => setCat(e.target.value)}>
+                Cultural
+              </MenuItem>
               <MenuItem value={'dp'} onClick={(e) => setCat(e.target.value)}>
                 Dance Production
               </MenuItem>

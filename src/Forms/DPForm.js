@@ -117,7 +117,7 @@ const DPForm = ({newItem, setNewItem, addItem}) => {
   return (
     <form onSubmit={handlenewSubmit}>
     <FormControl>
-      <FormLabel><u>Dance Production</u></FormLabel>
+      <FormLabel><u>You've Selected: DP</u></FormLabel>
       <HStack>
         <Select onChange={handleSelect}>
         {

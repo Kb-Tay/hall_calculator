@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react'
 import SocialForm from './Forms/SocialForm'
 import SportsForm from './Forms/SportsForm'
 import Footer from './Footer'
+import CulturalForm from './Forms/CulturalForm'
 
 function App() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('ccalist')) || [])
@@ -66,7 +67,9 @@ function App() {
         <Header title="Eusoff Points Calculator" />
         <SearchBar cat={cat} setCat={setCat} />
         <Container p={5}>
-          {cat == 'dp' ? (
+          {cat == 'cultural' ? (
+            <CulturalForm newItem={newItem} setNewItem={setNewItem} addItem={addItem} />)
+            : cat == 'dp' ? (
             <DPForm
               newItem={newItem}
               setNewItem={setNewItem}

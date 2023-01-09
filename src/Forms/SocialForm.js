@@ -77,7 +77,7 @@ const SocialForm = ({newItem, setNewItem, addItem}) => {
   return (
     <form onSubmit={handlenewSubmit}>
     <FormControl>
-      <FormLabel><u>Social Services & Other Comms</u></FormLabel>
+      <FormLabel><u>You've Selected: Social Services & Other Comms</u></FormLabel>
       <HStack>
         <Select onChange={handleChange}>
         {

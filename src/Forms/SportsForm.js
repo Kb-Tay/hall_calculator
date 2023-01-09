@@ -94,7 +94,7 @@ const SportsForm = ({newItem, setNewItem, addItem}) => {
   return (
     <form onSubmit={handlenewSubmit}>
     <FormControl>
-      <FormLabel>You've Selected: Sports</FormLabel>
+      <FormLabel><u>You've Selected: Sports</u></FormLabel>
       <HStack>
         <Select onChange={handleSports}>
         {
